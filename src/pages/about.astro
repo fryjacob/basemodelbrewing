@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import logo from '../assets/logo.png';
+import { site } from '../data/site';
+---
+
+<Base title="About" description="The story behind Base Model Brewing, a nano-brewery in Morgan Hill, CA.">
+	<section class="section">
+		<div class="container about">
+			<div>
+				<p class="eyebrow">Est. {site.established}</p>
+				<h1>About us</h1>
+				<p>
+					Every car has a base model: no add-ons, no upcharges, just the thing itself, built well.
+					That's how we think about beer. Base Model Brewing started in {site.established} as a
+					small-batch operation in Morgan Hill, California, focused on clean, classic styles
+					brewed with care.
+				</p>
+				<p>
+					As a nano-brewery, we brew a few barrels at a time. That keeps every batch fresh, lets us
+					experiment, and means the person pouring your beer probably brewed it too.
+				</p>
+				<p><strong>{site.tagline}.</strong></p>
+			</div>
+			<Image src={logo} alt="" width={320} height={320} densities={[1, 2]} class="about__logo" />
+		</div>
+	</section>
+</Base>
+
+<style>
+	.about {
+		display: grid;
+		grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+		gap: 3rem;
+		align-items: center;
+	}
+
+	.about p {
+		max-width: 38rem;
+	}
+
+	.about__logo {
+		width: 100%;
+		max-width: 320px;
+		margin: 0 auto;
+	}
+
+	@media (max-width: 720px) {
+		.about {
+			grid-template-columns: 1fr;
+		}
+
+		.about__logo {
+			max-width: 200px;
+			grid-row: 1;
+		}
+	}
+</style>

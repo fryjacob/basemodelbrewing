@@ -1,0 +1,138 @@
+:root {
+	/* Sampled from the logo */
+	--blue: #396784;
+	--blue-dark: #2a4d63;
+	--slate: #7d8896;
+	--mist: #b0bcca;
+	--mist-light: #e3e9ef;
+	--paper: #f8f7f4;
+	--ink: #1f2d38;
+
+	--font-display: 'Rye', Georgia, serif;
+	--font-body: 'Raleway Variable', system-ui, sans-serif;
+
+	--max-width: 64rem;
+	--radius: 0.5rem;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--paper);
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 1.0625rem;
+	line-height: 1.6;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	flex: 1;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-display);
+	font-weight: 400;
+	color: var(--blue);
+	line-height: 1.2;
+	letter-spacing: 0.02em;
+	margin: 0 0 0.5em;
+}
+
+h1 {
+	font-size: clamp(2rem, 5vw, 3rem);
+}
+
+h2 {
+	font-size: clamp(1.5rem, 3.5vw, 2rem);
+}
+
+h3 {
+	font-size: 1.35rem;
+}
+
+p {
+	margin: 0 0 1em;
+}
+
+a {
+	color: var(--blue);
+	text-underline-offset: 0.15em;
+}
+
+a:hover {
+	color: var(--blue-dark);
+}
+
+.container {
+	width: 100%;
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 0 1.25rem;
+}
+
+.section {
+	padding: 4rem 0;
+}
+
+.section--tint {
+	background: var(--mist-light);
+}
+
+.eyebrow {
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+	color: var(--slate);
+	margin: 0 0 0.5rem;
+}
+
+.button {
+	display: inline-block;
+	padding: 0.75rem 1.5rem;
+	border: 2px solid var(--blue);
+	border-radius: var(--radius);
+	background: var(--blue);
+	color: #fff;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 0.85rem;
+	transition: background 0.15s, color 0.15s;
+}
+
+.button:hover {
+	background: var(--blue-dark);
+	border-color: var(--blue-dark);
+	color: #fff;
+}
+
+.button--outline {
+	background: transparent;
+	color: var(--blue);
+}
+
+.button--outline:hover {
+	background: var(--blue);
+	color: #fff;
+}

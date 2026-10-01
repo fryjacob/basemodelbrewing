@@ -1,0 +1,34 @@
+[
+	{
+		"id": "standard-issue",
+		"name": "Standard Issue",
+		"style": "Blonde Ale",
+		"abv": 4.8,
+		"description": "Our flagship. Crisp, bready, and easy-drinking — the beer everything else is built on.",
+		"status": "on-tap"
+	},
+	{
+		"id": "trim-level",
+		"name": "Trim Level",
+		"style": "West Coast IPA",
+		"abv": 6.7,
+		"description": "Piney, resinous, and bone-dry, with a firm bitterness. Upgraded with a heavy dose of Simcoe and Centennial.",
+		"status": "on-tap"
+	},
+	{
+		"id": "factory-option",
+		"name": "Factory Option",
+		"style": "Amber Lager",
+		"abv": 5.2,
+		"description": "Toasty malt, a touch of caramel, and a clean, lagered finish.",
+		"status": "on-tap"
+	},
+	{
+		"id": "dealer-installed",
+		"name": "Dealer Installed",
+		"style": "Oatmeal Stout",
+		"abv": 5.9,
+		"description": "Silky and roasty with notes of cocoa and coffee. Coming as soon as the fermenter frees up.",
+		"status": "coming-soon"
+	}
+]

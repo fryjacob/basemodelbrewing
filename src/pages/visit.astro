@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base title="Visit" description="Hours and directions for Base Model Brewing in Morgan Hill, CA.">
+	<section class="section">
+		<div class="container">
+			<p class="eyebrow">Find us</p>
+			<h1>Visit the brewery</h1>
+
+			<div class="cards">
+				<div class="card">
+					<h2>Hours</h2>
+					<dl class="hours">
+						{
+							site.hours.map(({ days, time }) => (
+								<>
+									<dt>{days}</dt>
+									<dd>{time}</dd>
+								</>
+							))
+						}
+					</dl>
+					<p class="note">Hours can change around brew days. Check Instagram for the latest.</p>
+				</div>
+
+				<div class="card">
+					<h2>Location</h2>
+					<p>{site.address}</p>
+					<a class="button" href={site.mapUrl} rel="noopener">Get directions</a>
+				</div>
+
+				<div class="card">
+					<h2>Contact</h2>
+					<p>
+						Questions, events, or kegs for your next party? Drop us a line.
+					</p>
+					<p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+					<p><a href={site.instagram} rel="noopener">Follow us on Instagram</a></p>
+				</div>
+			</div>
+		</div>
+	</section>
+</Base>
+
+<style>
+	.cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+	}
+
+	.card {
+		background: #fff;
+		border-top: 4px solid var(--blue);
+		border-radius: var(--radius);
+		padding: 1.5rem;
+		box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+	}
+
+	.hours {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.25rem 1.5rem;
+		margin: 0 0 1rem;
+	}
+
+	.hours dt {
+		font-weight: 700;
+	}
+
+	.hours dd {
+		margin: 0;
+	}
+
+	.note {
+		font-size: 0.9rem;
+		color: var(--slate);
+		margin: 0;
+	}
+</style>

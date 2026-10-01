@@ -1,0 +1,138 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import BeerCard from '../components/BeerCard.astro';
+import logo from '../assets/logo.png';
+import { site } from '../data/site';
+
+const onTap = await getCollection('beers', ({ data }) => data.status === 'on-tap');
+---
+
+<Base>
+	<section class="hero">
+		<div class="container hero__inner">
+			<Image src={logo} alt={`${site.name} logo`} width={420} height={420} densities={[1, 2]} class="hero__logo" loading="eager" />
+			<div class="hero__text">
+				<p class="eyebrow">Nano-brewery · {site.city}</p>
+				<h1>{site.tagline}</h1>
+				<p>
+					Small-batch beer brewed in Morgan Hill. No frills, no shortcuts — just honest beer done
+					right.
+				</p>
+				<div class="hero__actions">
+					<a class="button" href="/beers/">See what's pouring</a>
+					<a class="button button--outline" href="/visit/">Plan a visit</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--tint">
+		<div class="container">
+			<p class="eyebrow">On tap now</p>
+			<h2>Current lineup</h2>
+			<div class="beer-grid">
+				{onTap.map((beer) => <BeerCard beer={beer} />)}
+			</div>
+			<p class="more"><a href="/beers/">Full beer list &rarr;</a></p>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container visit">
+			<div>
+				<p class="eyebrow">Come say hi</p>
+				<h2>Taproom hours</h2>
+				<dl class="hours">
+					{
+						site.hours.map(({ days, time }) => (
+							<>
+								<dt>{days}</dt>
+								<dd>{time}</dd>
+							</>
+						))
+					}
+				</dl>
+			</div>
+			<a class="button" href="/visit/">Directions &amp; details</a>
+		</div>
+	</section>
+</Base>
+
+<style>
+	.hero {
+		background: #fff;
+		padding: 3rem 0;
+	}
+
+	.hero__inner {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.hero__logo {
+		width: 100%;
+		max-width: 420px;
+		margin: 0 auto;
+	}
+
+	.hero__actions {
+		display: flex;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+		margin-top: 1.5rem;
+	}
+
+	.beer-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+	}
+
+	.more {
+		margin-top: 1.5rem;
+		font-weight: 700;
+	}
+
+	.visit {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		gap: 2rem;
+		flex-wrap: wrap;
+	}
+
+	.hours {
+		display: grid;
+		grid-template-columns: auto auto;
+		gap: 0.25rem 2rem;
+		margin: 0;
+	}
+
+	.hours dt {
+		font-weight: 700;
+	}
+
+	.hours dd {
+		margin: 0;
+	}
+
+	@media (max-width: 720px) {
+		.hero__inner {
+			grid-template-columns: 1fr;
+			text-align: center;
+		}
+
+		.hero__logo {
+			max-width: 280px;
+		}
+
+		.hero__actions {
+			justify-content: center;
+		}
+	}
+</style>

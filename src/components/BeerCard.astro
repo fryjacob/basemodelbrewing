@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	beer: CollectionEntry<'beers'>;
+}
+
+const { name, style, abv, description, status } = Astro.props.beer.data;
+---
+
+<article class="beer">
+	{status === 'coming-soon' && <span class="beer__badge">Coming soon</span>}
+	<h3 class="beer__name">{name}</h3>
+	<p class="beer__meta">{style} · {abv.toFixed(1)}% ABV</p>
+	<p class="beer__desc">{description}</p>
+</article>
+
+<style>
+	.beer {
+		position: relative;
+		background: #fff;
+		border: 2px solid var(--blue);
+		border-radius: var(--radius);
+		padding: 1.5rem;
+	}
+
+	.beer__name {
+		margin-bottom: 0.25rem;
+	}
+
+	.beer__meta {
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: var(--slate);
+	}
+
+	.beer__desc {
+		margin: 0;
+	}
+
+	.beer__badge {
+		position: absolute;
+		top: -0.75rem;
+		right: 1rem;
+		background: var(--slate);
+		color: #fff;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		padding: 0.2rem 0.6rem;
+		border-radius: 999px;
+	}
+</style>

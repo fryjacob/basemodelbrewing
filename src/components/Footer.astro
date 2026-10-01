@@ -1,0 +1,71 @@
+---
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+	<div class="container footer__inner">
+		<div>
+			<p class="footer__name">{site.name}</p>
+			<p class="footer__tagline">{site.tagline} · Est. {site.established} · {site.city}</p>
+		</div>
+		<ul class="footer__links">
+			<li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+			<li><a href={site.instagram} rel="noopener">Instagram</a></li>
+		</ul>
+	</div>
+	<div class="container">
+		<p class="footer__legal">
+			&copy; {year} {site.name}. Please enjoy responsibly. Must be 21+ to purchase.
+		</p>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		background: var(--blue);
+		color: var(--mist-light);
+		padding: 2.5rem 0 1.5rem;
+		margin-top: auto;
+	}
+
+	.footer__inner {
+		display: flex;
+		justify-content: space-between;
+		gap: 1.5rem;
+		flex-wrap: wrap;
+	}
+
+	.footer__name {
+		font-family: var(--font-display);
+		font-size: 1.35rem;
+		color: #fff;
+		margin: 0;
+	}
+
+	.footer__tagline {
+		font-size: 0.85rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--mist);
+	}
+
+	.footer__links {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.footer a {
+		color: #fff;
+	}
+
+	.footer__legal {
+		margin: 1.5rem 0 0;
+		padding-top: 1rem;
+		border-top: 1px solid rgb(255 255 255 / 0.2);
+		font-size: 0.8rem;
+		color: var(--mist);
+	}
+</style>

@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import BeerCard from '../components/BeerCard.astro';
+
+const beers = await getCollection('beers');
+const onTap = beers.filter(({ data }) => data.status === 'on-tap');
+const comingSoon = beers.filter(({ data }) => data.status === 'coming-soon');
+---
+
+<Base title="Beers" description="What's on tap and coming soon at Base Model Brewing in Morgan Hill, CA.">
+	<section class="section">
+		<div class="container">
+			<p class="eyebrow">The lineup</p>
+			<h1>Our beers</h1>
+			<p class="intro">
+				We brew in small batches, so the lineup changes often. Here's what's pouring now and what's
+				on deck.
+			</p>
+
+			<h2 class="group">On tap</h2>
+			<div class="beer-grid">
+				{onTap.map((beer) => <BeerCard beer={beer} />)}
+			</div>
+
+			{
+				comingSoon.length > 0 && (
+					<>
+						<h2 class="group">Coming soon</h2>
+						<div class="beer-grid">
+							{comingSoon.map((beer) => <BeerCard beer={beer} />)}
+						</div>
+					</>
+				)
+			}
+		</div>
+	</section>
+</Base>
+
+<style>
+	.intro {
+		max-width: 40rem;
+	}
+
+	.group {
+		margin-top: 2.5rem;
+	}
+
+	.beer-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+		gap: 1.5rem;
+	}
+</style>
